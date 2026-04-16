@@ -152,15 +152,16 @@ th { background-color: rgba(1,1,1,0.6); color: var(--txt-highlight); font-weight
     justify-content: space-around;
     align-items: center;
     margin-bottom: 30px;
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: rgba(255, 255, 255, 0.05); /* Un fondo sutil para resaltar los logos */
     padding: 20px;
-    border-radius: 12px;
+    border-radius: 15px;
 }
 
 .logo-img {
-    max-width: 160px; 
-    max-height: 75px; 
-    object-fit: contain; 
+    max-width: 180px; 
+    max-height: 90px; 
+    object-fit: contain; /* Evita que el logo se estire */
+    filter: drop-shadow(0 0 5px rgba(95, 67, 178, 0.3)); /* Brillo sutil estilo Nesh */
 }
 
 .info-block {
