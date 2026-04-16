@@ -1,3 +1,19 @@
+function mostrarPestana(id) {
+    // Ocultar todas
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.main-nav button').forEach(btn => btn.classList.remove('active'));
+    
+    // Mostrar la seleccionada
+    document.getElementById(`p_${id}`).classList.add('active');
+    document.getElementById(`btn-${id}`).classList.add('active');
+}
+
+// Asegurar que inicie en calculadora al cargar
+window.addEventListener('load', () => {
+    dibujarMatriz();
+    mostrarPestana('calculadora');
+});
+
 // --- Lógica de Navegación ---
 function mostrarPestana(id) {
     // 1. Ocultar todo el contenido de las pestañas
