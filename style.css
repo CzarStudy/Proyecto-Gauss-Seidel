@@ -16,15 +16,15 @@ body {
     background-color: #2b064d;
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.8);
     max-width: 800px;
     width: 100%;
     margin-bottom: 20px;
 }
 
-/* Título principal en lila claro */
+/* Títulos principales */
 h1 { color: #d5c6dc; text-align: center; }
-p { text-align: center; }
+p { text-align: center; color: #d5c6dc; }
 
 .controls-matrix {
     display: flex;
@@ -48,10 +48,10 @@ p { text-align: center; }
     overflow-x: auto;
 }
 
+/* Celdas de la matriz */
 input {
     width: 100%;
     padding: 8px;
-    /* Fondo de las celdas: Morado medio */
     background-color: #3d0b60;
     border: 1px solid #572975;
     color: #ffffff;
@@ -85,43 +85,32 @@ button {
 }
 
 /* Botón Calcular: Morado vibrante */
-.btn-primary { 
-    background-color: #815c97; 
-}
-.btn-primary:hover { 
-    background-color: #ab90b9; 
-    color: #1b003a; /* Letra oscura al pasar el mouse para hacer contraste */
-}
+.btn-primary { background-color: #815c97; }
+.btn-primary:hover { background-color: #ab90b9; color: #1b003a; }
 
-/* Botones de + y - Variables: Morado intermedio */
-.btn-secondary { 
-    background-color: #572975; 
-    padding: 8px; 
-    flex: none; 
-    width: auto; 
-}
+/* Botones de + y - Variables */
+.btn-secondary { background-color: #572975; padding: 8px; flex: none; width: auto; }
 .btn-secondary:hover { background-color: #815c97; }
 
-/* Botón Limpiar Todo: Un tono oscuro pero distinto para no usar rojo */
-.btn-danger { 
-    background-color: #340856; 
-    border: 1px solid #815c97;
-}
+/* Botón Limpiar Todo */
+.btn-danger { background-color: #340856; border: 1px solid #815c97; }
 .btn-danger:hover { background-color: #230443; }
 
-/* Alertas en lila muy claro para que se lean bien */
+/* Alertas de errores */
 #alerts {
     margin-top: 15px;
-    color: #d5c6dc;
+    color: #ab90b9;
     font-weight: bold;
     text-align: center;
 }
 
+/* Estilos de la tabla de iteraciones */
 .table-responsive { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; margin-top: 20px; }
 th, td { padding: 10px; border: 1px solid #572975; text-align: center; }
 th { background-color: #340856; color: #d5c6dc; }
 
+/* Recuadro de la solución final */
 #final-solution {
     margin-top: 20px;
     padding: 10px;
@@ -129,7 +118,7 @@ th { background-color: #340856; color: #d5c6dc; }
     border-left: 4px solid #ab90b9;
 }
 
-/* Letra del footer en un tono lila sutil */
+/* Footer de tu equipo */
 footer {
     text-align: center;
     color: #ab90b9;
