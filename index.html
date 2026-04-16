@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método de Gauss-Seidel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Gauss-Seidel</h1>
+        <p>Ingresa los coeficientes del sistema de 3x3 (ax + by + cz = d)</p>
+        
+        <div class="matrix-input" id="matrix-container">
+            <input type="number" id="a00" placeholder="x" step="any">
+            <input type="number" id="a01" placeholder="y" step="any">
+            <input type="number" id="a02" placeholder="z" step="any">
+            <span>=</span>
+            <input type="number" id="b0" placeholder="d" step="any" class="result-input">
+            
+            <input type="number" id="a10" placeholder="x" step="any">
+            <input type="number" id="a11" placeholder="y" step="any">
+            <input type="number" id="a12" placeholder="z" step="any">
+            <span>=</span>
+            <input type="number" id="b1" placeholder="d" step="any" class="result-input">
+            
+            <input type="number" id="a20" placeholder="x" step="any">
+            <input type="number" id="a21" placeholder="y" step="any">
+            <input type="number" id="a22" placeholder="z" step="any">
+            <span>=</span>
+            <input type="number" id="b2" placeholder="d" step="any" class="result-input">
+        </div>
+
+        <div class="settings">
+            <label for="tol">Error sugerido (Tolerancia):</label>
+            <input type="number" id="tol" value="0.000001" step="any">
+            
+            <label for="maxIter">Iteraciones máximas:</label>
+            <input type="number" id="maxIter" value="100">
+        </div>
+
+        <button onclick="resolverGaussSeidel()">Calcular</button>
+
+        <div id="alerts"></div>
+
+        <div class="results" id="results-container" style="display: none;">
+            <h3>Resultados:</h3>
+            <div id="final-solution"></div>
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>Iteración</th>
+                        <th>x</th>
+                        <th>y</th>
+                        <th>z</th>
+                        <th>Error</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
