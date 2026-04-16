@@ -8,21 +8,21 @@
 </head>
 <body>
     
+    <div class="main-background"></div>
+
     <header>
         <nav class="main-nav">
-            <button onclick="mostrarPestana('calculadora')" id="btn-calculadora">Calculadora</button>
+            <button onclick="mostrarPestana('calculadora')" id="btn-calculadora" class="active">Calculadora</button>
             <button onclick="mostrarPestana('equipo')" id="btn-equipo">Equipo</button>
             <button onclick="mostrarPestana('informacion')" id="btn-informacion">Información</button>
         </nav>
     </header>
     
-    <div class="main-background"></div>
-    
     <main class="content-container">
         
         <section id="p_calculadora" class="tab-content active">
             <h1>Calculadora Gauss-Seidel</h1>
-            <p>Ingresa los coeficientes del sistema (A) y los resultados (b).</p>
+            <p>Ingresa los coeficientes del sistema de ecuaciones para comenzar el cálculo.</p>
             
             <div class="controls-matrix">
                 <button onclick="cambiarTamano(-1)" class="btn-secondary">- Reducir</button>
@@ -51,20 +51,25 @@
             <div id="alerts"></div>
             
             <div class="results" id="results-container" style="display: none;">
-                <h3>Resultados:</h3>
+                <h3>Resultados Finales:</h3>
+                
                 <div id="final-solution"></div>
+                
+                <div id="comprobacion-container" class="comprobacion-box"></div>
+                
                 <div class="table-responsive">
                     <table id="results-table">
-                        <thead></thead>
-                        <tbody></tbody>
+                        <thead>
+                            </thead>
+                        <tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>
         </section>
         
         <section id="p_equipo" class="tab-content">
-            <h1>Equipo MaxTeam</h1>
-            <p>Este es el equipo que hizo posible esta herramienta.</p>
+            <h1>Integrantes del Equipo</h1>
             <div class="team-list">
                 <div class="team-member">Vasquez Ambris Cesar Yamil - 24212681</div>
                 <div class="team-member">Cobián Pérez Maximiliano - 24212803</div>
@@ -72,34 +77,41 @@
             </div>
         </section>
         
-        <section id="p_informacion" class="tab-content tab-info">
+        <section id="p_informacion" class="tab-content">
             <div class="logos-container">
                 <img src="LogoEBC.png" alt="Logo EBC" class="logo-img">
-                <img src="LogoTecNM.png" alt="Logo TecNM" class="logo-img">
+                <img src="LogoTecNM.jpg" alt="Logo TecNM" class="logo-img">
             </div>
             
-            <h1>Datos Generales</h1>
-            <div class="info-block">
+            <div class="info-details">
                 <p><strong>Materia:</strong> Métodos Numéricos</p>
                 <p><strong>Maestra:</strong> Maribel Guerrero Luis</p>
                 <p><strong>Carrera:</strong> Ing. Sistemas Computacionales</p>
             </div>
-            
+
             <hr>
+
+            <h3>¿Cómo funciona la calculadora?</h3>
+            <p class="text-info">
+                Esta herramienta utiliza el algoritmo iterativo de Gauss-Seidel. A diferencia de otros métodos, 
+                esta calculadora toma valores iniciales (normalmente ceros) y va refinando el valor de cada incógnita 
+                usando los resultados más recientes obtenidos en la misma iteración. El proceso se repite hasta que 
+                el error máximo entre una iteración y otra es menor a la tolerancia que tú definas.
+            </p>
             
-            <h1>¿Cómo funciona?</h1>
-            <p>La calculadora te ayuda a resolver sistemas de ecuaciones, de esos que tienen muchas variables. En lugar de hacer toda la mate de golpe, lo que hace es adivinar un número inicial (como cero) y luego va probando y ajustando cada variable, una por una, usando las otras, muchas veces hasta que los números dejan de cambiar mucho y se acercan a la respuesta correcta. Es como un ciclo de prueba y error, pero inteligente y ordenado.</p>
-            
-            <hr>
-            
-            <h1>Nuestro Reparto</h1>
-            <p>Para este proyecto, como somos tres, nos repartimos la chamba así: un compañero se encargó de armar todo el esqueleto de la página (el index), otro compañero se metió con la lógica y la mate para que los cálculos funcionaran (el script), y el tercer compañero le dio todo el estilo y los colores para que se viera bien (el style). Así cada quien se enfocó en su parte pero unimos todo al final.</p>
+            <h3>Distribución del Trabajo</h3>
+            <p class="text-info">
+                Para entregar este proyecto a tiempo, nos dividimos las tareas de la siguiente manera:
+                <strong>César</strong> armó toda la estructura base y el esqueleto de la página; 
+                <strong>Maximiliano</strong> desarrolló toda la lógica matemática y el script de cálculo; 
+                y <strong>Ricardo</strong> se encargó del diseño visual, los colores de alto contraste y la experiencia de usuario.
+            </p>
         </section>
         
     </main>
     
     <footer>
-        <p><strong>Métodos Numéricos</strong></p>
+        <p>Equipo: Vasquez Ambris, Cobián Pérez, Jimenez Sandoval</p>
     </footer>
     
     <script src="script.js"></script>
