@@ -43,7 +43,8 @@ function limpiarTodo() {
     dibujarMatriz(); 
     document.getElementById('results-container').style.display = 'none';
     document.getElementById('alerts').innerHTML = '';
-    document.getElementById('tol').value = '0.000001';
+    // Restablecer al 8% de error como en tu ejercicio
+    document.getElementById('tol').value = '8';
     document.getElementById('maxIter').value = '100';
 }
 
@@ -96,6 +97,7 @@ function resolverGaussSeidel() {
         alertsDiv.innerHTML = "Advertencia: La matriz NO es diagonalmente dominante. El método podría no converger.";
     }
 
+    // Ahora la tolerancia se lee como Porcentaje (ej. 8 significa 8%)
     let tol = parseFloat(document.getElementById('tol').value) || 0.000001;
     let maxIter = parseInt(document.getElementById('maxIter').value) || 100;
     
@@ -103,18 +105,29 @@ function resolverGaussSeidel() {
     let tbody = document.querySelector('#results-table tbody');
     tbody.innerHTML = ''; 
     
-    // 1. GENERAR ENCABEZADOS DINÁMICOS CON ERRORES INDIVIDUALES
+    // 1. ENCABEZADOS CON SIMBOLO DE PORCENTAJE
     let theadRow = `<tr><th>Iteración</th>`;
     for(let i = 0; i < n; i++) theadRow += `<th>x${i+1}</th>`;
-    for(let i = 0; i < n; i++) theadRow += `<th>Error x${i+1}</th>`;
-    theadRow += `<th>Error Máx</th></tr>`;
+    for(let i = 0; i < n; i++) {
+        // En tu cuaderno dice %x1, %x2... lo replicamos igual
+        theadRow += `<th>% x${i+1}</th>`; 
+    }
+    theadRow += `<th>% Error Máx</th></tr>`;
     document.querySelector('#results-table thead').innerHTML = theadRow;
 
-    // 2. CICLO DE ITERACIONES
-    for (let k = 0; k < maxIter; k++) {
+    // 2. IMPRIMIR ITERACIÓN CERO (Valores iniciales)
+    let row0 = `<tr><td>0</td>`;
+    for(let i = 0; i < n; i++) row0 += `<td>0.0000</td>`;
+    for(let i = 0; i < n; i++) row0 += `<td>---</td>`;
+    row0 += `<td>---</td></tr>`;
+    tbody.insertAdjacentHTML('beforeend', row0);
+
+    // 3. CICLO DE ITERACIONES (Empezando en 1)
+    for (let k = 1; k <= maxIter; k++) {
         let x_viejo = [...x];
         let errorMaximo = 0;
-        let erroresIndividuales = new Array(n).fill(0); // Guardar error de cada variable
+        let erroresIndividuales = new Array(n).fill(0); 
+        let errorMinimo = 1000000; // Para revisar si ALGUN error bajó de la tolerancia
 
         // Cálculo de nuevas variables
         for (let i = 0; i < n; i++) {
@@ -125,46 +138,63 @@ function resolverGaussSeidel() {
             x[i] = (b[i] - suma) / A[i][i];
         }
 
-        // Cálculo de errores
+        // Cálculo de errores PORCENTUALES RELATIVOS
         for (let i = 0; i < n; i++) {
-            let errorActual = Math.abs(x[i] - x_viejo[i]);
+            let errorActual = 0;
+            
+            if (k === 1) {
+                // Iteración 1 siempre es 100% de error según tu cuaderno
+                errorActual = 100; 
+            } else if (x[i] !== 0) {
+                // Fórmula de error relativo porcentual: |(nuevo - viejo) / nuevo| * 100
+                errorActual = Math.abs((x[i] - x_viejo[i]) / x[i]) * 100;
+            }
+
             erroresIndividuales[i] = errorActual;
+            
             if (errorActual > errorMaximo) errorMaximo = errorActual;
+            if (errorActual < errorMinimo) errorMinimo = errorActual;
         }
 
         // Imprimir fila en la tabla
         let row = `<tr><td>${k}</td>`;
-        for(let i = 0; i < n; i++) row += `<td>${x[i].toFixed(6)}</td>`;
-        for(let i = 0; i < n; i++) row += `<td>${erroresIndividuales[i].toFixed(6)}</td>`;
-        row += `<td>${errorMaximo.toFixed(6)}</td></tr>`;
+        for(let i = 0; i < n; i++) row += `<td>${x[i].toFixed(4)}</td>`;
+        
+        for(let i = 0; i < n; i++) {
+            row += `<td>${erroresIndividuales[i].toFixed(2)}%</td>`;
+        }
+        
+        row += `<td>${errorMaximo.toFixed(2)}%</td></tr>`;
         tbody.insertAdjacentHTML('beforeend', row);
 
-        if (errorMaximo < tol) break;
+        // CONDICIÓN DE PARADA:
+        // En tu cuaderno dice "hasta que alguna de las incognitas obtenga el 8% de error"
+        // Evaluamos si el error más pequeño (alguna) ya es menor a la tolerancia
+        if (errorMinimo < tol) {
+            break; 
+        }
     }
 
-    // 3. MOSTRAR RESULTADO FINAL
+    // 4. MOSTRAR RESULTADO FINAL
     document.getElementById('results-container').style.display = 'block';
     
     let resultHTML = `<strong>Solución Aproximada:</strong><br>`;
-    for(let i = 0; i < n; i++) resultHTML += `x${i+1} = ${x[i].toFixed(6)}<br>`;
+    for(let i = 0; i < n; i++) resultHTML += `x${i+1} = ${x[i].toFixed(4)}<br>`;
     document.getElementById('final-solution').innerHTML = resultHTML;
 
-    // 4. GENERAR LA COMPROBACIÓN
+    // 5. GENERAR LA COMPROBACIÓN
     let comprobacionHTML = `<h4>Comprobación (Sustituyendo resultados):</h4><ul>`;
     for(let i = 0; i < n; i++) {
         let valorCalculado = 0;
         let formulaString = "";
         
         for(let j = 0; j < n; j++) {
-            valorCalculado += A[i][j] * x[j]; // Multiplica coeficiente por resultado
-            
-            // Armar el string visual: (coef)(resultado) + ...
+            valorCalculado += A[i][j] * x[j]; 
             formulaString += `(${A[i][j]})(${x[j].toFixed(4)})`;
             if (j < n - 1) formulaString += " + ";
         }
         
-        // Agregar a la lista HTML
-        comprobacionHTML += `<li>Ecuación ${i+1}: ${formulaString} = <strong>${valorCalculado.toFixed(5)}</strong> <em>(Esperado: ${b[i]})</em></li>`;
+        comprobacionHTML += `<li>Ecuación ${i+1}: ${formulaString} = <strong>${valorCalculado.toFixed(4)}</strong> <em>(Esperado: ${b[i]})</em></li>`;
     }
     comprobacionHTML += `</ul>`;
     
