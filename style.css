@@ -187,3 +187,36 @@ footer {
     z-index: 100;
     border-top: 1px solid rgba(95, 67, 178, 0.3);
 }
+
+/* --- Estilos para la Comprobación --- */
+.comprobacion-box {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(1, 1, 1, 0.4);
+    border-left: 4px solid var(--txt-highlight);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem;
+}
+
+.comprobacion-box h4 {
+    margin-top: 0;
+    color: var(--txt-highlight);
+    margin-bottom: 10px;
+}
+
+.comprobacion-box ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.comprobacion-box li {
+    margin-bottom: 8px;
+    color: var(--txt-main);
+    font-family: monospace; /* Fuente tipo código para las matemáticas */
+}
+
+.comprobacion-box strong {
+    color: var(--primary-hover);
+}
