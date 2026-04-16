@@ -1,7 +1,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
+    /* Fondo principal: El morado más oscuro */
+    background-color: #1b003a; 
+    color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,16 +12,18 @@ body {
 }
 
 .container {
-    background-color: #1e1e1e;
+    /* Fondo del contenedor: Un tono ligeramente más claro para resaltar */
+    background-color: #2b064d;
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
     max-width: 800px;
     width: 100%;
     margin-bottom: 20px;
 }
 
-h1 { color: #4CAF50; text-align: center; }
+/* Título principal en lila claro */
+h1 { color: #d5c6dc; text-align: center; }
 p { text-align: center; }
 
 .controls-matrix {
@@ -34,6 +37,7 @@ p { text-align: center; }
 #dimension-label {
     font-weight: bold;
     font-size: 1.2rem;
+    color: #d5c6dc;
 }
 
 .matrix-input {
@@ -47,13 +51,14 @@ p { text-align: center; }
 input {
     width: 100%;
     padding: 8px;
-    background-color: #2c2c2c;
-    border: 1px solid #444;
-    color: white;
+    /* Fondo de las celdas: Morado medio */
+    background-color: #3d0b60;
+    border: 1px solid #572975;
+    color: #ffffff;
     border-radius: 6px;
     text-align: center;
 }
-input:focus { outline: none; border-color: #4CAF50; }
+input:focus { outline: none; border-color: #ab90b9; }
 
 .settings {
     display: flex;
@@ -71,41 +76,63 @@ input:focus { outline: none; border-color: #4CAF50; }
 button {
     flex: 1;
     padding: 12px;
-    color: white;
+    color: #ffffff;
     border: none;
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
-    transition: opacity 0.3s;
+    transition: all 0.3s ease;
 }
-button:hover { opacity: 0.8; }
 
-.btn-primary { background-color: #4CAF50; }
-.btn-secondary { background-color: #2196F3; padding: 8px; flex: none; width: auto; }
-.btn-danger { background-color: #f44336; }
+/* Botón Calcular: Morado vibrante */
+.btn-primary { 
+    background-color: #815c97; 
+}
+.btn-primary:hover { 
+    background-color: #ab90b9; 
+    color: #1b003a; /* Letra oscura al pasar el mouse para hacer contraste */
+}
 
+/* Botones de + y - Variables: Morado intermedio */
+.btn-secondary { 
+    background-color: #572975; 
+    padding: 8px; 
+    flex: none; 
+    width: auto; 
+}
+.btn-secondary:hover { background-color: #815c97; }
+
+/* Botón Limpiar Todo: Un tono oscuro pero distinto para no usar rojo */
+.btn-danger { 
+    background-color: #340856; 
+    border: 1px solid #815c97;
+}
+.btn-danger:hover { background-color: #230443; }
+
+/* Alertas en lila muy claro para que se lean bien */
 #alerts {
     margin-top: 15px;
-    color: #ff9800;
+    color: #d5c6dc;
     font-weight: bold;
     text-align: center;
 }
 
 .table-responsive { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-th, td { padding: 10px; border: 1px solid #444; text-align: center; }
-th { background-color: #2c2c2c; color: #4CAF50; }
+th, td { padding: 10px; border: 1px solid #572975; text-align: center; }
+th { background-color: #340856; color: #d5c6dc; }
 
 #final-solution {
     margin-top: 20px;
     padding: 10px;
-    background-color: #2c2c2c;
-    border-left: 4px solid #4CAF50;
+    background-color: #340856;
+    border-left: 4px solid #ab90b9;
 }
 
+/* Letra del footer en un tono lila sutil */
 footer {
     text-align: center;
-    color: #888;
+    color: #ab90b9;
     font-size: 0.9rem;
     margin-top: auto;
     padding: 10px;
