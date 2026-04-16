@@ -9,58 +9,52 @@
 <body>
     <div class="container">
         <h1>Calculadora Gauss-Seidel</h1>
-        <p>Ingresa los coeficientes del sistema de 3x3 (ax + by + cz = d)</p>
+        <p>Ingresa los coeficientes del sistema de ecuaciones.</p>
         
-        <div class="matrix-input" id="matrix-container">
-            <input type="number" id="a00" placeholder="x" step="any">
-            <input type="number" id="a01" placeholder="y" step="any">
-            <input type="number" id="a02" placeholder="z" step="any">
-            <span>=</span>
-            <input type="number" id="b0" placeholder="d" step="any" class="result-input">
-            
-            <input type="number" id="a10" placeholder="x" step="any">
-            <input type="number" id="a11" placeholder="y" step="any">
-            <input type="number" id="a12" placeholder="z" step="any">
-            <span>=</span>
-            <input type="number" id="b1" placeholder="d" step="any" class="result-input">
-            
-            <input type="number" id="a20" placeholder="x" step="any">
-            <input type="number" id="a21" placeholder="y" step="any">
-            <input type="number" id="a22" placeholder="z" step="any">
-            <span>=</span>
-            <input type="number" id="b2" placeholder="d" step="any" class="result-input">
+        <div class="controls-matrix">
+            <button onclick="cambiarTamano(-1)" class="btn-secondary">- Quitar Variable</button>
+            <span id="dimension-label">3 x 3</span>
+            <button onclick="cambiarTamano(1)" class="btn-secondary">+ Agregar Variable</button>
         </div>
+
+        <div class="matrix-input" id="matrix-container"></div>
 
         <div class="settings">
-            <label for="tol">Error sugerido (Tolerancia):</label>
-            <input type="number" id="tol" value="0.000001" step="any">
-            
-            <label for="maxIter">Iteraciones máximas:</label>
-            <input type="number" id="maxIter" value="100">
+            <div>
+                <label for="tol">Tolerancia (Error):</label>
+                <input type="number" id="tol" value="0.000001" step="any">
+            </div>
+            <div>
+                <label for="maxIter">Iteraciones máx:</label>
+                <input type="number" id="maxIter" value="100">
+            </div>
         </div>
 
-        <button onclick="resolverGaussSeidel()">Calcular</button>
+        <div class="main-buttons">
+            <button onclick="resolverGaussSeidel()" class="btn-primary">Calcular</button>
+            <button onclick="limpiarTodo()" class="btn-danger">Limpiar Todo</button>
+        </div>
 
         <div id="alerts"></div>
 
         <div class="results" id="results-container" style="display: none;">
             <h3>Resultados:</h3>
             <div id="final-solution"></div>
-            <table id="results-table">
-                <thead>
-                    <tr>
-                        <th>Iteración</th>
-                        <th>x</th>
-                        <th>y</th>
-                        <th>z</th>
-                        <th>Error</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    </tbody>
-            </table>
+            <div class="table-responsive">
+                <table id="results-table">
+                    <thead>
+                        </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
+    <footer>
+        <p><strong>Equipo:</strong> Vasquez Ambris Cesar Yamil - 24212681, Cobián Pérez Maximiliano - 24212803, Jimenez Sandoval Ricardo Alfonso - 24212893</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
