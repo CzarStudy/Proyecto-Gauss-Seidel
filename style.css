@@ -134,16 +134,10 @@ th { background-color: var(--danger); color: var(--txt-highlight); }
     margin-bottom: 20px;
 }
 
-.logo-placeholder {
-    width: 150px;
-    height: 100px;
-    background-color: var(--border);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--txt-highlight);
-    border-radius: 6px;
-    font-weight: bold;
+.logo-img {
+    max-width: 180px; /* Ancho máximo para que no se vean gigantes */
+    max-height: 80px; /* Alto máximo */
+    object-fit: contain; /* Esto hace que no se deformen ni se estiren */
 }
 
 .info-block {
