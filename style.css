@@ -1,128 +1,167 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* Fondo principal: El morado más oscuro */
-    background-color: #1b003a; 
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    margin: 0;
-    min-height: 100vh;
+/* --- Variables de Colores (Menos saturados) --- */
+:root {
+    --bg-main: #1b003a; /* Morado profundo de fondo */
+    --bg-container: rgba(27, 0, 58, 0.85); /* Fondo translúcido */
+    --txt-main: #ffffff; /* Blanco para texto */
+    --txt-highlight: #d5c6dc; /* Lila claro */
+    --primary: #815c97; /* Botón Calcular */
+    --primary-hover: #ab90b9;
+    --secondary: #572975; /* Aumentar/Reducir */
+    --danger: #340856; /* Limpiar */
+    --border: #572975; /* Bordes */
 }
 
-.container {
-    /* Fondo del contenedor: Un tono ligeramente más claro para resaltar */
-    background-color: #2b064d;
+/* --- Estilos Generales --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--txt-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fondo de página con imagen */
+.main-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Pon aquí la URL de tu imagen de fondo */
+    background-image: url('matrices.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+h1 { color: var(--txt-highlight); text-align: center; }
+p { text-align: center; color: var(--txt-highlight); }
+hr { border: 1px solid var(--border); margin: 2rem 0; }
+
+/* --- Navegación --- */
+header {
+    background-color: #0d001d; /* Más oscuro para el menú */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.main-nav {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+}
+
+.main-nav button {
+    background: none;
+    border: none;
+    color: var(--txt-main);
+    font-size: 1.1rem;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.main-nav button:hover,
+.main-nav button.active {
+    background-color: var(--border);
+    color: var(--txt-main);
+}
+
+/* --- Área de Contenido --- */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px; /* Para que el menú no tape el contenido */
+    padding-bottom: 60px; /* Para que el footer no tape el contenido */
+}
+
+.tab-content {
+    display: none; /* Oculto por defecto */
+    background-color: var(--bg-container);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.8);
     max-width: 800px;
-    width: 100%;
+    width: 90%;
+    border: 1px solid var(--border);
+}
+
+/* Mostrar pestaña activa */
+.tab-content.active {
+    display: block;
+}
+
+/* --- Estilos de Calculadora (Reutilizados) --- */
+.controls-matrix, .main-buttons, .settings {
+    display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px;
+}
+.settings div { width: 100%; }
+.matrix-input { display: grid; gap: 10px; overflow-x: auto; margin-bottom: 20px; }
+input { width: 100%; padding: 8px; background-color: #3d0b60; border: 1px solid var(--border); color: var(--txt-main); border-radius: 6px; text-align: center; }
+input:focus { outline: none; border-color: var(--primary-hover); }
+
+button { flex: 1; padding: 12px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; transition: all 0.3s ease; color: var(--txt-main); }
+.btn-primary { background-color: var(--primary); }
+.btn-primary:hover { background-color: var(--primary-hover); color: var(--bg-main); }
+.btn-secondary { background-color: var(--secondary); padding: 8px; flex: none; width: auto; }
+.btn-secondary:hover { background-color: var(--primary); }
+.btn-danger { background-color: var(--danger); border: 1px solid var(--primary); }
+.btn-danger:hover { background-color: #230443; }
+#alerts { color: var(--txt-highlight); text-align: center; }
+.table-responsive { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { padding: 10px; border: 1px solid var(--border); text-align: center; }
+th { background-color: var(--danger); color: var(--txt-highlight); }
+#final-solution { margin-top: 20px; padding: 10px; background-color: var(--danger); border-left: 4px solid var(--primary); }
+
+/* --- Estilos de Equipo y Info --- */
+.team-list { text-align: center; font-size: 1.2rem; }
+.team-member { padding: 10px 0; }
+
+.logos-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 }
 
-/* Títulos principales */
-h1 { color: #d5c6dc; text-align: center; }
-p { text-align: center; color: #d5c6dc; }
-
-.controls-matrix {
+.logo-placeholder {
+    width: 150px;
+    height: 100px;
+    background-color: var(--border);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-#dimension-label {
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #d5c6dc;
-}
-
-.matrix-input {
-    display: grid;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 20px;
-    overflow-x: auto;
-}
-
-/* Celdas de la matriz */
-input {
-    width: 100%;
-    padding: 8px;
-    background-color: #3d0b60;
-    border: 1px solid #572975;
-    color: #ffffff;
+    color: var(--txt-highlight);
     border-radius: 6px;
-    text-align: center;
-}
-input:focus { outline: none; border-color: #ab90b9; }
-
-.settings {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-.settings div { width: 100%; }
-
-.main-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-button {
-    flex: 1;
-    padding: 12px;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* Botón Calcular: Morado vibrante */
-.btn-primary { background-color: #815c97; }
-.btn-primary:hover { background-color: #ab90b9; color: #1b003a; }
-
-/* Botones de + y - Variables */
-.btn-secondary { background-color: #572975; padding: 8px; flex: none; width: auto; }
-.btn-secondary:hover { background-color: #815c97; }
-
-/* Botón Limpiar Todo */
-.btn-danger { background-color: #340856; border: 1px solid #815c97; }
-.btn-danger:hover { background-color: #230443; }
-
-/* Alertas de errores */
-#alerts {
-    margin-top: 15px;
-    color: #ab90b9;
     font-weight: bold;
-    text-align: center;
 }
 
-/* Estilos de la tabla de iteraciones */
-.table-responsive { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-th, td { padding: 10px; border: 1px solid #572975; text-align: center; }
-th { background-color: #340856; color: #d5c6dc; }
-
-/* Recuadro de la solución final */
-#final-solution {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #340856;
-    border-left: 4px solid #ab90b9;
+.info-block {
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-/* Footer de tu equipo */
+/* --- Pie de Página --- */
 footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0d001d;
     text-align: center;
-    color: #ab90b9;
+    color: var(--txt-highlight);
     font-size: 0.9rem;
-    margin-top: auto;
-    padding: 10px;
+    padding: 10px 0;
+    z-index: 100;
 }

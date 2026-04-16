@@ -1,3 +1,25 @@
+// --- Lógica de Navegación ---
+function mostrarPestana(id) {
+    // 1. Ocultar todo el contenido de las pestañas
+    const contenidos = document.querySelectorAll('.tab-content');
+    contenidos.forEach(c => c.classList.remove('active'));
+
+    // 2. Quitar la clase 'active' de todos los botones
+    const botones = document.querySelectorAll('.main-nav button');
+    botones.forEach(b => b.classList.remove('active'));
+
+    // 3. Mostrar la pestaña seleccionada
+    document.getElementById(`p_${id}`).classList.add('active');
+
+    // 4. Activar el botón correspondiente
+    document.getElementById(`btn-${id}`).classList.add('active');
+}
+
+// Opcional: Para que la calculadora esté activa al cargar
+window.onload = function() {
+    dibujarMatriz(); // Esta función ya la tienes, para dibujar la matriz inicial
+    mostrarPestana('calculadora'); 
+};
 let n = 3; // Dimensión inicial por defecto (3x3)
 
 // Se ejecuta al cargar la página para dibujar la matriz inicial
