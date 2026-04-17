@@ -43,7 +43,6 @@ function limpiarTodo() {
     dibujarMatriz(); 
     document.getElementById('results-container').style.display = 'none';
     document.getElementById('alerts').innerHTML = '';
-    // Restablecer al 8% de error como en tu ejercicio
     document.getElementById('tol').value = '8';
     document.getElementById('maxIter').value = '100';
 }
@@ -97,7 +96,6 @@ function resolverGaussSeidel() {
         alertsDiv.innerHTML = "Advertencia: La matriz NO es diagonalmente dominante. El método podría no converger.";
     }
 
-    // Ahora la tolerancia se lee como Porcentaje (ej. 8 significa 8%)
     let tol = parseFloat(document.getElementById('tol').value) || 0.000001;
     let maxIter = parseInt(document.getElementById('maxIter').value) || 100;
     
@@ -109,7 +107,6 @@ function resolverGaussSeidel() {
     let theadRow = `<tr><th>Iteración</th>`;
     for(let i = 0; i < n; i++) theadRow += `<th>x${i+1}</th>`;
     for(let i = 0; i < n; i++) {
-        // En tu cuaderno dice %x1, %x2... lo replicamos igual
         theadRow += `<th>% x${i+1}</th>`; 
     }
     theadRow += `<th>% Error Máx</th></tr>`;
@@ -127,7 +124,7 @@ function resolverGaussSeidel() {
         let x_viejo = [...x];
         let errorMaximo = 0;
         let erroresIndividuales = new Array(n).fill(0); 
-        let errorMinimo = 1000000; // Para revisar si ALGUN error bajó de la tolerancia
+        let errorMinimo = 1000000; 
 
         // Cálculo de nuevas variables
         for (let i = 0; i < n; i++) {
@@ -143,10 +140,8 @@ function resolverGaussSeidel() {
             let errorActual = 0;
             
             if (k === 1) {
-                // Iteración 1 siempre es 100% de error según tu cuaderno
                 errorActual = 100; 
             } else if (x[i] !== 0) {
-                // Fórmula de error relativo porcentual: |(nuevo - viejo) / nuevo| * 100
                 errorActual = Math.abs((x[i] - x_viejo[i]) / x[i]) * 100;
             }
 
@@ -167,9 +162,6 @@ function resolverGaussSeidel() {
         row += `<td>${errorMaximo.toFixed(2)}%</td></tr>`;
         tbody.insertAdjacentHTML('beforeend', row);
 
-        // CONDICIÓN DE PARADA:
-        // En tu cuaderno dice "hasta que alguna de las incognitas obtenga el 8% de error"
-        // Evaluamos si el error más pequeño (alguna) ya es menor a la tolerancia
         if (errorMinimo < tol) {
             break; 
         }

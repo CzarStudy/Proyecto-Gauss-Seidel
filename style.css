@@ -1,14 +1,14 @@
-/* --- Variables de Colores (Estilo "Nesh" - Elegante y menos saturado) --- */
+
 :root {
-    --bg-main: #010101; /* Negro para alto contraste */
-    --bg-container: rgba(58, 49, 83, 0.85); /* Tono Martinique translúcido para paneles */
-    --txt-main: #fefdfd; /* Blanco suave */
-    --txt-highlight: #b1aebb; /* Gris 'Spun Pearl' para destacar sin saturar */
-    --primary: #5f43b2; /* Morado 'Studio' (Botón Calcular) */
-    --primary-hover: #7253d1; /* Morado más claro al pasar el mouse */
-    --secondary: #3a3153; /* Tono oscuro para botones de Aumentar/Reducir */
-    --danger: rgba(1, 1, 1, 0.6); /* Negro translúcido para botón limpiar */
-    --border: #5f43b2; /* Morado principal para bordes */
+    --bg-main: #010101; 
+    --bg-container: rgba(58, 49, 83, 0.85); 
+    --txt-main: #fefdfd;
+    --txt-highlight: #b1aebb; 
+    --primary: #5f43b2; 
+    --primary-hover: #7253d1; 
+    --secondary: #3a3153; 
+    --danger: rgba(1, 1, 1, 0.6); 
+    --border: #5f43b2; 
 }
 
 /* --- Estilos Generales --- */
@@ -22,14 +22,13 @@ body {
     padding: 0;
 }
 
-/* Fondo de página con imagen y gradiente oscuro para que no sature */
+
 .main-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* El linear-gradient oscurece la imagen para que el texto resalte */
     background-image: linear-gradient(rgba(1, 1, 1, 0.7), rgba(58, 49, 83, 0.8)), url('fondo.jpg'); 
     background-size: cover;
     background-position: center;
@@ -43,8 +42,8 @@ hr { border: 1px solid rgba(177, 174, 187, 0.2); margin: 2rem 0; }
 
 /* --- Navegación --- */
 header {
-    background-color: rgba(1, 1, 1, 0.8); /* Negro translúcido */
-    backdrop-filter: blur(10px); /* Efecto cristal */
+    background-color: rgba(1, 1, 1, 0.8); 
+    backdrop-filter: blur(10px); 
     position: fixed;
     top: 0;
     left: 0;
